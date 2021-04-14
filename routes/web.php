@@ -4,6 +4,7 @@ use App\Reporting\SalesHtmlOutput;
 use App\Reporting\SalesReporter;
 use App\Reporting\ShapesHtmlOutput;
 use App\Repositories\CollectionSalesRepository;
+use App\Repositories\LessonRepositoryInterface;
 use App\Shapes\AreaCalculator;
 use App\Shapes\Circle;
 use App\Shapes\Square;
@@ -48,4 +49,15 @@ Route::get('open-closed', function () {
     $output = new ShapesHtmlOutput();
 
     return $output->output($area);
+});
+
+Route::get('liskov-substitution', function (LessonRepositoryInterface $lesson) {
+
+    $lesson = $lesson->getAll();
+
+    if (is_array($lesson)) {
+        return response('Follow the Liskov substitution principle. Type of data which returns should be expected.');
+    }
+
+    return response('Something is wrong with type of data');
 });

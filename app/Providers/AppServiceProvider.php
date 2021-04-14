@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\FilesystemLessonRepository;
+use App\Repositories\LessonRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +25,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->app->bind(LessonRepositoryInterface::class, function () {
+            return new FilesystemLessonRepository();
+        });
+
     }
 }
