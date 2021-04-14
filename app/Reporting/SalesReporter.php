@@ -2,11 +2,17 @@
 
 namespace App\Reporting;
 
-// This class only gets the sales between the given dates.
-// It doesn't deal with how with sales are stored, it doesn't
-// deal with how to format the output, it doesn't deal with Auth
 use App\Repositories\SalesRepositoryInterface;
 
+/**
+ * This class only gets the sales between the given dates.
+ * It doesn't deal with how sales are stored, it doesn't
+ * deal with how to format the output, it doesn't deal with Auth.
+ * Only single responsibility.
+ *
+ * Class SalesReporter
+ * @package App\Reporting
+ */
 class SalesReporter
 {
     private $repository;
