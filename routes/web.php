@@ -2,7 +2,11 @@
 
 use App\Reporting\SalesHtmlOutput;
 use App\Reporting\SalesReporter;
+use App\Reporting\ShapesHtmlOutput;
 use App\Repositories\CollectionSalesRepository;
+use App\Shapes\AreaCalculator;
+use App\Shapes\Circle;
+use App\Shapes\Square;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 
@@ -29,4 +33,19 @@ Route::get('single-responsibility', function () {
     $end = new Carbon('2021-03-20 14:43:40');
 
     return $report->between($begin, $end, new SalesHtmlOutput);
+});
+
+Route::get('open-closed', function () {
+
+    $calculator = new AreaCalculator();
+
+    $shapes = collect([
+        new Square(3, 4),
+        new Circle(3),
+    ]);
+
+    $area = $calculator->calculate($shapes);
+    $output = new ShapesHtmlOutput();
+
+    return $output->output($area);
 });

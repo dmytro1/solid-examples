@@ -22,7 +22,7 @@ class SalesReporter
         $this->repository = $repository;
     }
 
-    public function between($startDate, $endDate, SalesOutputInterface $formatter): string
+    public function between($startDate, $endDate, OutputInterface $formatter): string
     {
         $sales = $this->repository->between($startDate, $endDate);
 

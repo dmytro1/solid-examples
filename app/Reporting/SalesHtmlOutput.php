@@ -2,7 +2,7 @@
 
 namespace App\Reporting;
 
-class SalesHtmlOutput implements SalesOutputInterface
+class SalesHtmlOutput implements OutputInterface
 {
     public function output(float $sales): string
     {
