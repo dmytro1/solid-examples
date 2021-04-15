@@ -1,5 +1,7 @@
 <?php
 
+use App\Inversion\DbConnection;
+use App\Inversion\PasswordReminder;
 use App\Reporting\SalesHtmlOutput;
 use App\Reporting\SalesReporter;
 use App\Reporting\ShapesHtmlOutput;
@@ -70,4 +72,10 @@ Route::get('interface-segregation', function (Captain $captain) {
     $androidWork = $captain->manage(new AndroidWorker);
 
     return response([$humanWork, $androidWork]);
+});
+
+Route::get('dependency-inversion', function () {
+    $reminder = new PasswordReminder(new DbConnection);
+
+    return $reminder->remind();
 });
