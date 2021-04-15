@@ -8,6 +8,9 @@ use App\Repositories\LessonRepositoryInterface;
 use App\Shapes\AreaCalculator;
 use App\Shapes\Circle;
 use App\Shapes\Square;
+use App\Space\Captain;
+use App\Space\Workers\AndroidWorker;
+use App\Space\Workers\HumanWorker;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 
@@ -60,4 +63,11 @@ Route::get('liskov-substitution', function (LessonRepositoryInterface $lesson) {
     }
 
     return response('Something is wrong with type of data');
+});
+
+Route::get('interface-segregation', function (Captain $captain) {
+    $humanWork = $captain->manage(new HumanWorker);
+    $androidWork = $captain->manage(new AndroidWorker);
+
+    return response([$humanWork, $androidWork]);
 });
